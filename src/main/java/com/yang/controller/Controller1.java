@@ -1,8 +1,5 @@
 package com.yang.controller;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 //@ComponentScan("controller")
 public class Controller1 {
 
+    //@ResponseBody 表示此方法返回的是文本而不是视图名称
     @RequestMapping("/controller1/test1")
     public String test1() {
         return "test1";
