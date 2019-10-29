@@ -1,15 +1,17 @@
 package com.yang.base;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * @Description: TODO
+ * @Description: 分页返回数据
  * @Author: tona.sun
  * @Date: 2019/10/28 14:14
  */
+@Data
 @EqualsAndHashCode(callSuper = false)
 public class PageResult<T> implements Serializable {
 

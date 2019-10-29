@@ -2,6 +2,8 @@ package com.yang.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.github.pagehelper.PageInfo;
+import com.yang.base.PageResult;
 import com.yang.constant.BizStatus;
 import com.yang.exception.BizException;
 import lombok.Data;
@@ -71,13 +73,13 @@ public class RestResponseVO<T> {
         return new RestResponseVO<T>(bizException);
     }
 
-    /*public static <T> RestResponseVO<PageResult<T>> page(PageInfo<T> page) {
+    public static <T> RestResponseVO<PageResult<T>> page(PageInfo<T> page) {
         RestResponseVO<PageResult<T>> restResponseVO = new RestResponseVO<PageResult<T>>();
         PageResult<T> result = PageResult.of((int) page.getTotal(), page.getList());
         restResponseVO.setResult(result);
         restResponseVO.setCode(BizStatus.OK.code);
         return restResponseVO;
-    }*/
+    }
 
     public static <T> RestResponseVO<List<T>> success(List<T> list) {
         RestResponseVO<List<T>> restResponseVO = new RestResponseVO<List<T>>();

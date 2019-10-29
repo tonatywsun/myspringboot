@@ -2,10 +2,13 @@ package com.yang.controller;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yang.entry.Student;
+import com.yang.mapper.UserMapper;
+import com.yang.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -71,12 +75,24 @@ public class JacksonController {
 
     //@JsonAnySetter,标记在某个方法上，此方法接受Key、Value两个参数，用于JackSon在反序列化过程中，未找到的对应属性都调用此方法。
     @JsonAnySetter
-    //JsonAnyGetter，此注解标注在一个返回Map的方法上，Jackson会取出Map中的每一个值进行序列化。
+    //@JsonAnyGetter，此注解标注在一个返回Map的方法上，Jackson会取出Map中的每一个值进行序列化。
     @JsonAnyGetter
     @GetMapping("/jasonAnnotation.json")
-    public Map jasonAnnotation(@RequestParam(name="k") String k, @RequestParam(name="v") Integer v) {
+    public Map jasonAnnotation(@RequestParam(name = "k", required = false) String k, @RequestParam(name = "v", required = false) Integer v) {
         Map map = new HashMap();
         map.put(k, v);
         return map;
+    }
+
+    //这样返回值只会返回含有@JsonView(Student.add.class)注解的属性字段不加JsonView的默认都显示
+    @JsonView(Student.add.class)
+    @GetMapping("/student.json")
+    public Student student() {
+        Student s = new Student();
+        s.setSNo(1L);
+        s.setName("aa");
+        s.setId(2);
+        s.setAge(22);
+        return s;
     }
 }

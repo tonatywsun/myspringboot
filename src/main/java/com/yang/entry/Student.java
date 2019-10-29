@@ -1,5 +1,10 @@
 package com.yang.entry;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.yang.jacksonconf.StudentDeserializer;
+import com.yang.jacksonconf.StudentSerializer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,19 +24,28 @@ import javax.validation.constraints.Null;
 @Getter
 @ToString
 @NoArgsConstructor
+//使用StudentDeserializer将字符串解析为Student对象
+//@JsonDeserialize(using = StudentDeserializer.class)
+//使用StudentSerializer将Student对象解析为字符串
+//@JsonSerialize(using = StudentSerializer.class)
 public class Student {
-    //当校验上下文为Add.class的时候，＠Null生效,id 需为空才能校验通过；
-    //当校验上下文为Update.class的时候，＠NotNull生效，id 不能为空;
+    //当校验上下文为Add.class的时候，@Null生效,id 需为空才能校验通过；
+    //当校验上下文为Update.class的时候，@NotNull生效，id不能为空;
     @Null(groups = {add.class})
     @NotNull(groups = {Student.Update.class})
     private Integer id;
 
+    //当方法上加@JsonView(Student.add.class)则会返回含有@JsonView(Student.add.class)注解的不加JsonView的属性字段
+    //不加JsonView的默认都返回
+    @JsonView(add.class)
     @NotNull
     private Long sNo;
 
+    @JsonView(add.class)
     private String name;
 
     @Max(value = 140)
+    @JsonView(Update.class)
     private int age;
 
     @Email
@@ -44,4 +58,5 @@ public class Student {
     //定义另一个类，添加时校验纽
     public interface add {
     }
+
 }
