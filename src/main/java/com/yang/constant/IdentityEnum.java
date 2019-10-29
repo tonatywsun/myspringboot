@@ -1,16 +1,16 @@
 package com.yang.constant;
 
 /**
- * @Description: TODO
+ * @Description: 会员身份枚举类
  * @Author: tona.sun
  * @Date: 2019/10/28 12:41
  */
-public enum SexEnum {
-    MAN(1),
-    WOMAN(2);
+public enum IdentityEnum {
+    GENERAL(1),
+    VIP(2);
     int code;
 
-    SexEnum(int code) {
+    IdentityEnum(int code) {
         this.code = code;
     }
 

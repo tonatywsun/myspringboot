@@ -15,11 +15,17 @@ import org.springframework.context.annotation.Configuration;
 @Aspect
 @Slf4j
 public class SimpleAop {
+    /**
+     * @description : 对使用RestController注解的类进行aop
+     * @author : tona.sun
+     * @date : 2019/10/28 12:06
+     */
     @Around("@within(org.springframework.web.bind.annotation.RestController)")
     public Object simpleAop(ProceedingJoinPoint joinPoint) throws Throwable {
-        log.info("aop before");
+
+        log.info("SimpleAop simpleAop before:{}",joinPoint.getArgs());
         Object proceed = joinPoint.proceed();
-        log.info("aop after");
+        log.info("SimpleAop  simpleAop");
         return proceed;
     }
 }

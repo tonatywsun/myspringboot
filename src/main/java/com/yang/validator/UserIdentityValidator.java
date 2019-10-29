@@ -1,30 +1,30 @@
 package com.yang.validator;
 
-import com.yang.constant.SexEnum;
+import com.yang.constant.IdentityEnum;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * @Description: TODO
+ * @Description: 自定义校验
  * @Author: tona.sun
  * @Date: 2019/10/21 10:31
  */
-public class OnlySexCanOperationValidator implements ConstraintValidator<OnlySexCanOperation, SexEnum> {
-    OnlySexCanOperation onlySexCanOperation;
-    SexEnum sex;
+public class UserIdentityValidator implements ConstraintValidator<UserIdentity, IdentityEnum> {
+    UserIdentity userIdentity;
+    IdentityEnum identity;
 
     @Override
-    public void initialize(OnlySexCanOperation constraintAnnotation) {
-        this.onlySexCanOperation = constraintAnnotation;
-        sex = onlySexCanOperation.sex();
+    public void initialize(UserIdentity constraintAnnotation) {
+        this.userIdentity = constraintAnnotation;
+        identity = userIdentity.identity();
     }
 
     @Override
-    public boolean isValid(SexEnum value, ConstraintValidatorContext context) {
+    public boolean isValid(IdentityEnum value, ConstraintValidatorContext context) {
         if (value == null) {
             return true;
         }
-        return value == sex;
+        return value == identity;
     }
 }
