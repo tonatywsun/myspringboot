@@ -1,6 +1,6 @@
 server:
    connection-timeout: 10000
-   port: 8088
+   port: 8088 #配置端口号
 
 spring:
    devtools:
@@ -35,3 +35,9 @@ mapper:
 logging:
    level:
       root: debug
+
+apollo:
+   bootstrap:
+      enabled: true
+      namespaces: application,yang,test.yml
+

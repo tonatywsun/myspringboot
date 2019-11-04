@@ -3,6 +3,8 @@ package com.yang.service.impl;
 import com.yang.mapper.UserMapper;
 import com.yang.model.User;
 import com.yang.service.UserService;
+import com.yang.vo.BusinessParameters;
+import com.yang.vo.TestYml;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +23,14 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private BusinessParameters businessParameters;
+    @Autowired
+    private TestYml testYml;
 
     @Override
     public List<User> getAllUser() {
+        log.info("businessParameters :{}", businessParameters);
         return userMapper.selectAll();
     }
 }
