@@ -1,16 +1,18 @@
 server:
-   connection-timeout: 10000
-   port: 8088 #配置端口号
+  connection-timeout: 10000
+  port: 8088 #配置端口号
 
 spring:
-   devtools:
-      restart:
-         enabled: true  #设置开启热部署
-   freemarker:
-      cache: false    #页面不加载缓存，修改即时生效
-   datasource:
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+  freemarker:
+    cache: false    #页面不加载缓存，修改即时生效
+  datasource:
+    member:
       type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://localhost:3306/syy?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+      #多数据源情况下不能直接使用url,要使用jdbc-url,这是springboot的bug吧
+      jdbc-url: jdbc:mysql://localhost:3306/member?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
       username: root #数据库用户名
       password: ssss1111 #数据库密码
       driver-class-name: com.mysql.cj.jdbc.Driver #mysql驱动
@@ -22,22 +24,25 @@ spring:
       minEvictableIdleTimeMillis: 30000 #配置一个连接在池中最小生存的时间，单位是毫秒
       validationQuery: SELECT 1 FROM DUAL #测试连接
 mybatis:
-   type-aliases-package: com.yang.model
-   mapper-locations: classpath:/mapper/*.xml
-   configuration:
-      map-underscore-to-camel-case: true
-      #打印sql
-      #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.yang.model
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    #打印sql
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 mapper:
-   mappers: com.yang.base.TkMapper  #扫描基类接口
-   identity: mysql
+  mappers: com.yang.base.TkMapper  #扫描基类接口
+  identity: mysql
 
 logging:
-   level:
-      root: debug
+  level:
+    root: debug
 
 apollo:
-   bootstrap:
-      enabled: true
-      namespaces: application,yang,test.yml
+  bootstrap:
+    enabled: true
+    #apollo客户端升级到1.4之后test.yml由于不是真正的yml，客户端无法区分是yml还是properties，有问题
+    namespaces: application,yang,test.yml,YmlConfTest.yml,ymltest.yml,testyml.yml.yml,application-dev.yml
 
+swagger:
+  enable: true

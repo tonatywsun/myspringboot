@@ -1,10 +1,11 @@
 package com.yang.controller;
 
 import com.yang.base.PageResult;
-import com.yang.entry.Student;
 import com.yang.model.User;
 import com.yang.service.UserService;
 import com.yang.vo.RestResponseVO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
@@ -22,14 +23,23 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/user")
+@Api(value = "user api",tags = "UserController")
 public class UserController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping("/getAllUser.json")
+    @ApiOperation(value = "查询所有用户", responseReference = "RestResponseVO<PageResult<User>>", notes = "分页查询所有用户")
     public RestResponseVO<PageResult<User>> getAllUser() {
         List<User> allUser = userService.getAllUser();
         PageResult<User> of = PageResult.of(CollectionUtils.isEmpty(allUser) ? 0 : allUser.size(), allUser);
         return RestResponseVO.success(of);
+    }
+
+
+    @GetMapping("/getAllUserForRestTemp.json")
+    public RestResponseVO<PageResult<User>> getAllUserForRestTemp() {
+        return userService.getAllUserForRestTemp();
     }
 }

@@ -1,8 +1,9 @@
 package com.yang.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.yang.validator.UserIdentity;
 import com.yang.validator.ValidGroup;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.Table;
@@ -18,9 +19,11 @@ import java.util.Date;
  */
 @Data
 @Table(name = "t_user", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})})
+@ApiModel(description = "用户")
 public class User {
+    @ApiModelProperty(value = "主键ID", name = "id")
     private Long id;
-
+    @ApiModelProperty(value = "会员号", name = "uNo")
     private Long uNo;
 
     @UserIdentity(groups = {ValidGroup.AddValid.class})

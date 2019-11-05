@@ -6,14 +6,16 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * @Description: TODO
+ * @Description: apollo-client版本1.1不支持读取yml，搞了一下午
  * @Author: tona.sun
- * @Date: 2019/11/01 14:43
+ * @Date: 2019/11/04 13:46
  */
 @Component
-@ConfigurationProperties(prefix = "yangyang")
+@ConfigurationProperties(prefix = "biz-param1")
 @Data
 @ToString
-public class TestYml {
-    String testkey;
+public class YmlConfTest {
+    String yy;
+    String yyy;
+    String yyyy;
 }

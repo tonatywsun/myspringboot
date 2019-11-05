@@ -1,7 +1,8 @@
 package com.yang.service;
 
-import com.yang.entry.Student;
+import com.yang.base.PageResult;
 import com.yang.model.User;
+import com.yang.vo.RestResponseVO;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ import java.util.List;
  */
 public interface UserService {
     List<User> getAllUser();
+
+    RestResponseVO<PageResult<User>> getAllUserForRestTemp();
 }
