@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.yang.jacksonconf.LocalDateTimeDeserializer;
 import com.yang.jacksonconf.LocalDateTimeSerializer;
+import com.yang.utils.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +26,7 @@ public class JacksonConf {
         log.info("JacksonConf getObjectMapper");
         ObjectMapper objectMapper = new ObjectMapper();
         //自定义返回对象时间格式
-        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+        objectMapper.setDateFormat(new SimpleDateFormat(DateUtil.YYYY_MM_DD_PATTERN));
         JavaTimeModule javaTimeModule = new JavaTimeModule();
         //自定义返回对象localDataTime返回格式
         javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer());

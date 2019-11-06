@@ -3,6 +3,7 @@ package com.yang.service;
 import com.yang.base.PageResult;
 import com.yang.model.User;
 import com.yang.vo.RestResponseVO;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
@@ -13,6 +14,9 @@ import java.util.List;
  */
 public interface UserService {
     List<User> getAllUser();
+
+    @Cacheable("user")
+    User getOneUser(User user);
 
     RestResponseVO<PageResult<User>> getAllUserForRestTemp();
 }

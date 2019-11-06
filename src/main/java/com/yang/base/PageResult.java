@@ -16,9 +16,13 @@ import java.util.List;
 public class PageResult<T> implements Serializable {
 
     private static final long serialVersionUID = 8085883156894729748L;
-
+    /**
+     * 数据总条数
+     */
     private long total;
-
+    /**
+     * 数据集合
+     */
     private List<T> result;
 
     public static <T> PageResult<T> of(long total, List<T> list) {

@@ -52,6 +52,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("swagger接口文档")
                 .description("简单优雅的restfun风格接口稳定")
+                //条款
                 .termsOfServiceUrl("https://baidu.com")
                 .version("1.0")
                 .build();

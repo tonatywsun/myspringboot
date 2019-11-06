@@ -14,7 +14,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @Description: TODO
+ * @Description: 阿波罗配置
  * @Author: tona.sun
  * @Date: 2019/11/01 14:19
  */
@@ -31,12 +31,17 @@ public class ApolloConfig implements ApplicationContextAware {
         this.applicationContext = applicationContext;
     }
 
+    /**
+     * @description : 监听配置中心值变化
+     * @author : tona.sun
+     * @date : 2019/11/6 18:50
+     */
     @ApolloConfigChangeListener
     private void onChange(ConfigChangeEvent changeEvent) {
-        log.info("配置信息变化: 有{}个修改", changeEvent.changedKeys().size());
+        log.info("onChange 配置信息变化: 有{}个修改", changeEvent.changedKeys().size());
         changeEvent.changedKeys().stream().forEach(k -> {
             ConfigChange change = changeEvent.getChange(k);
-            log.info("{}: {} -> {}", k, change.getOldValue(), change.getNewValue());
+            log.info("key:{}  oldValue:{} -> newValue:{}", k, change.getOldValue(), change.getNewValue());
         });
         applicationContext.publishEvent(new EnvironmentChangeEvent(changeEvent.changedKeys()));
         refresher.refresh();

@@ -3,6 +3,7 @@ package com.yang;
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 /*@ComponentScan("controller")
 @EnableAutoConfiguration*/
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 //@MapperScan(basePackages = "com.yang.mapper")
 @EnableApolloConfig
+@EnableCaching
 public class Application {
     public static void main(String[] args) {
         try {

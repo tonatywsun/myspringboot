@@ -19,6 +19,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author : tona.sun
+ * @description : 使用redis相关配置
+ * @date : 2019/11/6 19:13
+ */
+
 @Configuration
 public class RestTemplateConfig {
     /**

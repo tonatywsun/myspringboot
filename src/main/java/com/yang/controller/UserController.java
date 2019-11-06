@@ -23,7 +23,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/user")
-@Api(value = "user api",tags = "UserController")
+@Api(value = "user api", tags = "UserController")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -40,6 +40,10 @@ public class UserController {
 
     @GetMapping("/getAllUserForRestTemp.json")
     public RestResponseVO<PageResult<User>> getAllUserForRestTemp() {
+        User user = new User();
+        user.setId(1L);
+        user.setUName("yy");
+        userService.getOneUser(user);
         return userService.getAllUserForRestTemp();
     }
 }

@@ -3,6 +3,12 @@ server:
   port: 8088 #配置端口号
 
 spring:
+  cache:
+    type: redis
+  redis:
+    host: 127.0.0.1
+    por: 6379
+    password:
   devtools:
     restart:
       enabled: true  #设置开启热部署
@@ -46,3 +52,6 @@ apollo:
 
 swagger:
   enable: true
+
+zk:
+  url: 127.0.0.1:2181
