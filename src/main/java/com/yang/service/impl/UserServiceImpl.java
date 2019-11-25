@@ -12,6 +12,8 @@ import com.yang.vo.YmlConfTest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpMethod;
@@ -23,7 +25,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 /**
- * @Description: TODO
+ * @Description: UserServiceImpl
  * @Author: tona.sun
  * @Date: 2019/10/29 18:12
  */
@@ -64,15 +66,19 @@ public class UserServiceImpl implements UserService {
      * @date : 2019/11/6 11:40
      */
     @Override
-   @Cacheable("user")
-   // @CacheEvict(cacheNames = "user",allEntries = true)
+    @Cacheable("user")
+    // @CacheEvict(cacheNames = "user",allEntries = true)
     public User getOneUser(User user) {
         log.info("businessParameters :{}", businessParameters);
         return userMapper.selectByPrimaryKey(user.getId());
     }
 
+    @Autowired
+    private DiscoveryClient client;
+
     @Override
     public RestResponseVO<PageResult<User>> getAllUserForRestTemp() {
+        List<ServiceInstance> instances = client.getInstances("local");
         ResponseEntity<RestResponseVO<PageResult<User>>> exchange = restTemplate.exchange("http://127.0.0.1:8088/user/getAllUser.json", HttpMethod.GET, null, new ParameterizedTypeReference<RestResponseVO<PageResult<User>>>() {
         });
         RestResponseVO<PageResult<User>> body = exchange.getBody();

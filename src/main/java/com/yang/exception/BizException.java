@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * @Description: TODO
+ * @Description: 业务异常
  * @Author: tona.sun
  * @Date: 2019/10/28 14:13
  */

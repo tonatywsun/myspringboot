@@ -38,7 +38,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/getAllUserForRestTemp.json")
+    @GetMapping(value = "/getAllUserForRestTemp.json", produces = {"application/json;charset=UTF-8"})
     public RestResponseVO<PageResult<User>> getAllUserForRestTemp() {
         User user = new User();
         user.setId(1L);

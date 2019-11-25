@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * @Description: TODO
+ * @Description: 返回值封装实体类
  * @Author: tona.sun
  * @Date: 2019/10/28 14:08
  */

@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * @Description: apollo-client版本1.1不支持读取yml，搞了一下午
+ * @Description: apollo-client(jar包)版本1.1不支持读取yml，搞了一下午
  * @Author: tona.sun
  * @Date: 2019/11/04 13:46
  */

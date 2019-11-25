@@ -12,7 +12,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * @Description: TODO
+ * @Description: swagger相关配置
  * @Author: tona.sun
  * @Date: 2019/11/05 11:45
  */

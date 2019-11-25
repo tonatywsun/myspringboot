@@ -1,5 +1,6 @@
 package com.yang.conf;
 
+import com.yang.utils.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.FormatterRegistry;
@@ -59,8 +60,8 @@ public class MvcConfigurer implements WebMvcConfigurer {
      */
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addFormatter(new DateFormatter("yyyy-MM-dd HH:mm:ss"));
-        log.info("MvcConfigurer addFormatters");
+        log.info("mvcConfigurer addFormatters");
+        registry.addFormatter(new DateFormatter(DateUtil.YYYY_MM_DD_PATTERN));
     }
 
     //URI到视图的映射

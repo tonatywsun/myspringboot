@@ -13,5 +13,4 @@ import org.springframework.stereotype.Component;
 @Mapper
 @Component(value = "userMapper")
 public interface UserMapper extends TkMapper<User> {
-
 }

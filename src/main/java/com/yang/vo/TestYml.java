@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * @Description: TODO
+ * @Description: apollo yml测试
  * @Author: tona.sun
  * @Date: 2019/11/01 14:43
  */
