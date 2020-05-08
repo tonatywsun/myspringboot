@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.mapper.MemberMapper">
+    <resultMap id="BaseResultMap" type="com.yang.model.Member">
+        <result column="id" property="id" />
+        <!-- 下面这句很重要：作用就是通过selectListByMercId查出list然后映射到属性mercSettleList中。
+        其中，ofType为list的泛型，column为子select的入参(就是selectCardByMember中的#{member_id}中的member_id的值为本对象中的id)，select为子查询的mapper Id-->
+        <collection property="cards" ofType="com.yang.model.Card" column="{member_id=id}" select="selectCardByMember"/>
+    </resultMap>
+
+    <select id="selectAllMember" resultMap="BaseResultMap">
+       select * from t_member_info
+    </select>
+
+    <select id="selectCardByMember"  resultType="com.yang.model.Card">
+        select card_no as cardNo,
+        member_id as memberId
+        from t_card_info
+        <where>
+            member_id = #{member_id}
+        </where>
+    </select>
+</mapper>

@@ -9,14 +9,13 @@ import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @Description: Zookeeper相关配置
  * @Author: tona.sun
  * @Date: 2019/11/06 17:19
  */
-@Configuration
+//@Configuration
 public class ZookeeperConf {
     @Value("${zk.url}")
     private String url;

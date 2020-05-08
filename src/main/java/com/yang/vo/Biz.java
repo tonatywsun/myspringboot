@@ -2,7 +2,6 @@ package com.yang.vo;
 
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,6 +13,6 @@ import org.springframework.stereotype.Component;
 @Component
 @ToString
 public class Biz {
-    @Value("${tets.tt}")
+    //@Value("${tets.tt}")
     private String aa;
 }

@@ -20,7 +20,7 @@ spring:
     member:
       type: com.alibaba.druid.pool.DruidDataSource
       #多数据源情况下不能直接使用url,要使用jdbc-url,这是springboot的bug吧
-      jdbc-url: jdbc:mysql://localhost:3306/member?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+      url: jdbc:mysql://localhost:3306/yy-test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
       username: root #数据库用户名
       password: ssss1111 #数据库密码
       driver-class-name: com.mysql.cj.jdbc.Driver #mysql驱动
@@ -33,24 +33,25 @@ spring:
       validationQuery: SELECT 1 FROM DUAL #测试连接
 mybatis:
   type-aliases-package: com.yang.model
-  mapper-locations: classpath:/mapper/*.xml
+  mapperPath: classpath:mapper/*Mapper.xml
   configuration:
     map-underscore-to-camel-case: true
     #打印sql
-    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 mapper:
   mappers: com.yang.base.TkMapper  #扫描基类接口
   identity: mysql
+  not-empty: true
 
 logging:
   level:
     root: debug
 
-apollo:
-  bootstrap:
-    enabled: true
+#apollo:
+    #bootstrap:
+    #enabled: true
     #apollo客户端升级到1.4之后test.yml由于不是真正的yml，客户端无法区分是yml还是properties，有问题
-    namespaces: application,yang,test.yml,YmlConfTest.yml,ymltest.yml,testyml.yml.yml,application-dev.yml
+    #namespaces: application,yang,test.yml,YmlConfTest.yml,ymltest.yml,testyml.yml.yml,application-dev.yml
 
 swagger:
   enable: true
@@ -58,11 +59,11 @@ swagger:
 zk:
   url: 127.0.0.1:2181
 
-eureka:
-  instance:
-    preferIpAddress: true
-    lease-renewal-interval-in-seconds: 20 #服务续约任务调用时间间隔
-    lease-expiration-duration-in-seconds: 60 #服务失效时间
-  client:
-    serviceUrl:
-      defaultZone: http://127.0.0.1:22203/eureka,http://127.0.0.1:22202/eureka
+#eureka:
+    # instance:
+    #preferIpAddress: true
+    #lease-renewal-interval-in-seconds: 20 #服务续约任务调用时间间隔
+  #lease-expiration-duration-in-seconds: 60 #服务失效时间
+    #client:
+    #serviceUrl:
+  # defaultZone: http://127.0.0.1:22203/eureka,http://127.0.0.1:22202/eureka

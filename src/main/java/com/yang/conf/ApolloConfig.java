@@ -3,7 +3,6 @@ package com.yang.conf;
 import com.ctrip.framework.apollo.model.ConfigChange;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;
 import com.ctrip.framework.apollo.spring.annotation.ApolloConfigChangeListener;
-import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.cloud.context.environment.EnvironmentChangeEvent;
 import org.springframework.cloud.context.refresh.ContextRefresher;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @Description: 阿波罗配置
@@ -19,8 +17,8 @@ import org.springframework.context.annotation.Configuration;
  * @Date: 2019/11/01 14:19
  */
 @Slf4j
-@Configuration
-@EnableApolloConfig
+/*@Configuration
+@EnableApolloConfig*/
 public class ApolloConfig implements ApplicationContextAware {
     private ApplicationContext applicationContext = null;
     @Autowired

@@ -1,3 +1,4 @@
+/*
 package com.yang.conf;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -14,19 +15,23 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 import javax.sql.DataSource;
 
+*/
 /**
  * @author : tona.sun
  * @description : 对应指定mapper package便于使用多数据源
  * @date : 2019/11/5 10:54
- */
+ *//*
+
 @Configuration
 @MapperScan(basePackages = "com.yang.mapper")
 @EnableTransactionManagement
 public class MyBatisConfig {
 
-   /*默认注入的是 datasource下配置文件内容，不利于使用多数据源
+   */
+/*默认注入的是 datasource下配置文件内容，不利于使用多数据源
     @Autowired
-    private DataSource dataSource;*/
+    private DataSource dataSource;*//*
+
 
     @Bean("memberDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.member")
@@ -34,9 +39,11 @@ public class MyBatisConfig {
         return DataSourceBuilder.create().build();
     }
 
-    /**
+    */
+/**
      * 创建SqlSession工厂
-     */
+     *//*
+
     @Bean
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
@@ -50,12 +57,15 @@ public class MyBatisConfig {
         return transactionManager;
     }
 
-    /**
+    */
+/**
      * 配置sqlsession模板
-     */
+     *//*
+
     @Bean
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 
 }
+*/

@@ -1,8 +1,8 @@
 package com.yang.controller;
 
 import com.yang.base.PageResult;
-import com.yang.model.User;
-import com.yang.service.UserService;
+import com.yang.model.Member;
+import com.yang.service.MemberService;
 import com.yang.vo.RestResponseVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,24 +26,23 @@ import java.util.List;
 @Api(value = "user api", tags = "UserController")
 public class UserController {
     @Autowired
-    private UserService userService;
+    private MemberService userService;
 
 
     @GetMapping("/getAllUser.json")
     @ApiOperation(value = "查询所有用户", responseReference = "RestResponseVO<PageResult<User>>", notes = "分页查询所有用户")
-    public RestResponseVO<PageResult<User>> getAllUser() {
-        List<User> allUser = userService.getAllUser();
-        PageResult<User> of = PageResult.of(CollectionUtils.isEmpty(allUser) ? 0 : allUser.size(), allUser);
+    public RestResponseVO<PageResult<Member>> getAllUser() {
+        List<Member> allUser = userService.getAllUser();
+        PageResult<Member> of = PageResult.of(CollectionUtils.isEmpty(allUser) ? 0 : allUser.size(), allUser);
         return RestResponseVO.success(of);
     }
 
 
     @GetMapping(value = "/getAllUserForRestTemp.json", produces = {"application/json;charset=UTF-8"})
-    public RestResponseVO<PageResult<User>> getAllUserForRestTemp() {
-        User user = new User();
+    public RestResponseVO<PageResult<Member>> getAllUserForRestTemp() {
+        Member user = new Member();
         user.setId(1L);
-        user.setUName("yy");
         userService.getOneUser(user);
-        return userService.getAllUserForRestTemp();
+        return null;//userService.getAllUserForRestTemp();
     }
 }

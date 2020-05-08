@@ -1,23 +1,16 @@
 package com.yang.service.impl;
 
-import com.yang.base.PageResult;
-import com.yang.mapper.UserMapper;
-import com.yang.model.User;
-import com.yang.service.UserService;
+import com.yang.mapper.MemberMapper;
+import com.yang.model.Member;
+import com.yang.service.MemberService;
 import com.yang.vo.Biz;
 import com.yang.vo.BusinessParameters;
-import com.yang.vo.RestResponseVO;
 import com.yang.vo.TestYml;
 import com.yang.vo.YmlConfTest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -25,16 +18,16 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 /**
- * @Description: UserServiceImpl
+ * @Description: MemberServiceImpl
  * @Author: tona.sun
  * @Date: 2019/10/29 18:12
  */
 @Slf4j
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class UserServiceImpl implements UserService {
+public class MemberServiceImpl implements MemberService {
     @Autowired
-    private UserMapper userMapper;
+    private MemberMapper memberMapper;
     @Autowired
     private BusinessParameters businessParameters;
     @Autowired
@@ -49,10 +42,13 @@ public class UserServiceImpl implements UserService {
     private StringRedisTemplate redisClient;
 
     @Override
-    public List<User> getAllUser() {
-        redisClient.opsForValue().set("y", "v");
+    public List<Member> getAllUser() {
+        //redisClient.opsForValue().set("y", "v");
         log.info("businessParameters :{}", businessParameters);
-        return userMapper.selectAll();
+        //测试用 可以查出Member中的List<Card> cards;
+        //实现为xml中的<collection property="cards" ofType="com.yang.model.Card" column="{member_id=id}" select="selectCardByMember"/>
+        List<Member> members = memberMapper.selectAllMember();
+        return memberMapper.selectAll();
     }
 
     /**
@@ -68,21 +64,21 @@ public class UserServiceImpl implements UserService {
     @Override
     @Cacheable("user")
     // @CacheEvict(cacheNames = "user",allEntries = true)
-    public User getOneUser(User user) {
+    public Member getOneUser(Member member) {
         log.info("businessParameters :{}", businessParameters);
-        return userMapper.selectByPrimaryKey(user.getId());
+        return memberMapper.selectByPrimaryKey(member.getId());
     }
 
-    @Autowired
+   /* @Autowired
     private DiscoveryClient client;
 
     @Override
-    public RestResponseVO<PageResult<User>> getAllUserForRestTemp() {
+    public RestResponseVO<PageResult<Member>> getAllUserForRestTemp() {
         List<ServiceInstance> instances = client.getInstances("local");
-        ResponseEntity<RestResponseVO<PageResult<User>>> exchange = restTemplate.exchange("http://127.0.0.1:8088/user/getAllUser.json", HttpMethod.GET, null, new ParameterizedTypeReference<RestResponseVO<PageResult<User>>>() {
+        ResponseEntity<RestResponseVO<PageResult<Member>>> exchange = restTemplate.exchange("http://127.0.0.1:8088/user/getAllUser.json", HttpMethod.GET, null, new ParameterizedTypeReference<RestResponseVO<PageResult<Member>>>() {
         });
-        RestResponseVO<PageResult<User>> body = exchange.getBody();
+        RestResponseVO<PageResult<Member>> body = exchange.getBody();
         return body;
-    }
+    }*/
 
 }

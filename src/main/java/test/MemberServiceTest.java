@@ -1,7 +1,7 @@
 package test;
 
 import com.yang.Application;
-import com.yang.service.UserService;
+import com.yang.service.MemberService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,9 +19,9 @@ import static org.mockito.BDDMockito.given;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @Transactional
-public class UserServiceTest {
+public class MemberServiceTest {
     @MockBean
-    UserService userService;
+    MemberService userService;
 
     @Test
     public void testa() {
